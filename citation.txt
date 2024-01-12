@@ -1,0 +1,7 @@
+@inproceedings{REPO235,
+    author = "Arad, Boaz and Timofte, Radu and Yahel, Rony and Morag, Nimrod and Bernat, Amir and Wu, Yaqi and Wu, Xun and Fan, Zhihao and Xia, Chenjie and Zhang, Feng and others",
+    booktitle = "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+    pages = "882--896",
+    title = "{NTIRE 2022 Spectral Demosaicing Challenge and Data Set}",
+    year = "2022"
+}

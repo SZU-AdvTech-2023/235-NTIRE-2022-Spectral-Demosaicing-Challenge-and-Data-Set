@@ -1,0 +1,52 @@
+data:
+  data_set: 
+  train_dir: 
+  valid_dir: 
+  source_dir: 
+  norm: channel_max  # 1.fixed_max 2.channel_max  3.global_max
+  fixed: None  # fixed_max要提供这个值  channel_max与global_max设置为None
+
+train:
+  prune: True
+  prune_rate: 0.0001
+  model: Res2Unet_32w6s_nointerp_prune
+  max_epochs: 5000
+  batch_size: 2
+  learning_rate: 0.0001
+  device: cuda:0
+  optimizer: Adam
+  pre_train: None 
+  loss_function:
+    losses: ['L1Loss', 'MSELoss', 'MARELoss']       # Mean Absolute Error, L1Loss
+    weights: [0.5,0.05,0.45] #[0.99, 0.0, 0.01]
+  sigmoid_scale: 1.001   # fixed_max为1.0  channel_max 与 global_max最好设置大一点1.001来满足最大值与真实值的差距
+  is_interp: False
+  is_two_x: False
+
+evaluate:
+  evaluation_metrics: ['PSNR', 'SAM']
+  early_stopping:
+    patience: 50
+    monitor: ['PSNR', 'SAM']
+  batch_size: 2
+
+test:
+  model: 
+  data_set: 
+  test_dir: 
+  recovered_dir: 
+  device: cuda:0
+  pre_train: 
+  norm: channel_max
+  fixed: None
+  sigmoid_scale: 1.001
+  log: log_channel_max_nas/test_log
+
+log:
+  log_dir: 
+  ckp_dir: 
+  save_frequency: 10
+
+dataset: MosaicDataset_enhance
+
+random_seed: 20231226
